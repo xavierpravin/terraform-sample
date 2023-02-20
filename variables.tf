@@ -3,5 +3,5 @@ variable "resource_name" {
 }
 
 variable "location" {
-  default = "demo"
+  default = "East US 2"
 }
