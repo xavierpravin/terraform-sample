@@ -1,4 +1,4 @@
-#provider module test
+#provider module
 provider "azurerm" {
   features {}
 }
