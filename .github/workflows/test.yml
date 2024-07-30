@@ -65,5 +65,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          #Pushing the code test
+          #Pushing the code
           git push origin  HEAD:refs/heads/main --force
