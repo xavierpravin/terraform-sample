@@ -59,8 +59,8 @@ jobs:
           if git diff --quiet && git diff --cached --quiet; then
             exit 0
           fi
-          git config --global user.name 'xavierpravin'
-          git config --global user.email 'xavierpravinkumar@gmail.com'
+          git config --global user.name 'githubactions'
+          git config --global user.email 'githubactions@gmail.com'
           git add .
           git commit -m "Added a file"
 
