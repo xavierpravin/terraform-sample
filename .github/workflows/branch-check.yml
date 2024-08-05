@@ -1,0 +1,19 @@
+name: Branch Name Check
+
+on:
+  create:
+    branches:
+      - '**'
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        if: startsWith(github.ref, 'refs/heads/test-star')
+        run: echo "Branch name is valid."
+      - name: Invalid branch name
+        if: "!startsWith(github.ref, 'refs/heads/test-star')"
+        run: |
+          echo "Branch name is invalid."
+          exit 1
