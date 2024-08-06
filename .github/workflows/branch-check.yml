@@ -31,5 +31,5 @@ jobs:
       run: |
         branch_name="${GITHUB_REF#refs/heads/}"
         git push origin --delete "$branch_name"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
