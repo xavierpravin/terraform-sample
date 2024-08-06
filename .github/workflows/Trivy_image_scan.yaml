@@ -30,10 +30,10 @@ jobs:
 
       - name: Install Trivy
         run: |
-          VERSION=$(curl -s https://api.github.com/repos/aquasecurity/trivy/releases/latest | jq -r .tag_name)
-          wget https://github.com/aquasecurity/trivy/releases/download/${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
-          tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
-          sudo mv trivy /usr/local/bin/
+          sudo apt-get update -y
+          sudo apt-get install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.22.0/trivy_0.22.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.22.0_Linux-64bit.deb
 
       #- name: Build Docker image
       #  run: |
