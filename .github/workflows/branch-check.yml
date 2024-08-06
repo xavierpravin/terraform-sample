@@ -1,19 +1,35 @@
-name: Branch Name Check
+name: Restrict Branch Creation
 
 on:
   create:
     branches:
-      - '**'
+      - '*'
+
+permissions:
+  contents: write  # Allows read and write access to the repository contents.
 
 jobs:
   check-branch-name:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check branch name
-        if: startsWith(github.ref, 'refs/heads/test-star')
-        run: echo "Branch name is valid."
-      - name: Invalid branch name
-        if: "!startsWith(github.ref, 'refs/heads/test-star')"
-        run: |
-          echo "Branch name is invalid."
-          exit 1
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check branch name
+      id: check_branch_name
+      run: |
+        branch_name="${GITHUB_REF#refs/heads/}"
+        if [[ "$branch_name" != "test-star" ]]; then
+          echo "delete_branch=true" >> $GITHUB_ENV
+        else
+          echo "delete_branch=false" >> $GITHUB_ENV
+        fi
+
+    - name: Delete branch if not allowed
+      if: env.delete_branch == 'true'
+      run: |
+        branch_name="${GITHUB_REF#refs/heads/}"
+        git push origin --delete "$branch_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
