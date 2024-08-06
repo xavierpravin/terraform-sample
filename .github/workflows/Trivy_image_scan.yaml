@@ -13,13 +13,13 @@ jobs:
   trivy-scan:
     runs-on: ubuntu-latest
 
-    env:
-      PAT_AZURE_DEVOPS: ${{ secrets.PAT_AZURE_DEVOPS }}
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      acr_name: your_acr_name
-    inputs:
-      app-name: notification-hub
-      app-sha: ${{ github.sha }}
+    # env:
+    #   PAT_AZURE_DEVOPS: ${{ secrets.PAT_AZURE_DEVOPS }}
+    #   GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    #   acr_name: your_acr_name
+    # inputs:
+    #   app-name: notification-hub
+    #   app-sha: ${{ github.sha }}
 
     steps:
       - name: Checkout repository
