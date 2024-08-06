@@ -20,7 +20,7 @@ jobs:
       id: check_branch_name
       run: |
         branch_name="${GITHUB_REF#refs/heads/}"
-        if [[ "$branch_name" != "test-star" ]]; then
+        if [[ "$branch_name" != ""^(patch|feature)\/[A-Z]+-[0-9]+-.+"" ]]; then
           echo "delete_branch=true" >> $GITHUB_ENV
         else
           echo "delete_branch=false" >> $GITHUB_ENV
